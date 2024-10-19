@@ -3,6 +3,7 @@ import { useCreateWorkspaceModal } from "@/features/workspaces/store/useCreateWo
 
 import { useGetWorkspaces } from "@/features/workspaces/api/use-get-workspaces";
 import { useEffect, useMemo } from "react";
+import { Modal } from "@/components/ui/modals";
 
 
 const HomePage = () => {
@@ -28,6 +29,7 @@ const HomePage = () => {
 
   return (
     <div>
+      <Modal />
       <UserButton />
 
     </div>
