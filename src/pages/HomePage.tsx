@@ -4,10 +4,12 @@ import { useCreateWorkspaceModal } from "@/features/workspaces/store/useCreateWo
 import { useGetWorkspaces } from "@/features/workspaces/api/use-get-workspaces";
 import { useEffect, useMemo } from "react";
 import { Modal } from "@/components/ui/modals";
+import { useNavigate } from "react-router-dom";
 
 
 const HomePage = () => {
-  const [open, setOpen] = useCreateWorkspaceModal()
+  const [open, setOpen] = useCreateWorkspaceModal();
+  const navigate = useNavigate();
 
 
   const {data, isLoading} = useGetWorkspaces();
@@ -19,13 +21,13 @@ const HomePage = () => {
 
 
     if(workspaceId) {
-      console.log("Redirect to workspace");
+      navigate(`/workspace/${workspaceId}`, {replace: true});
     }
     else if(!open) {
       setOpen(true)
     }
 
-  }, [workspaceId, isLoading, open, setOpen])
+  }, [workspaceId, isLoading, open, navigate, setOpen])
 
   return (
     <div>

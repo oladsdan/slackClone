@@ -2,8 +2,9 @@
 import AuthScreen from "@/features/auth/components/auth-screen";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import ProtectedRoute from "./features/auth/components/protectedRoute";
-import HomePage from "./pages/HomePage";
+// import HomePage from "./pages/HomePage";
 import { Authenticated, Unauthenticated } from "convex/react";
+import { HomePage, WorkspaceId } from "./pages";
 
 
 function App() {
@@ -45,6 +46,13 @@ function App() {
         <Route path="/" element={<ProtectedRoute>
           <HomePage />
         </ProtectedRoute>} />
+
+        <Route path="/workspace/:workspaceId" element={
+          <ProtectedRoute>
+            <WorkspaceId />
+          </ProtectedRoute>
+        } />
+
         {/* <Route path="/testing" element={<ProtectedRoute>
           <Testing />
         </ProtectedRoute>} /> */}

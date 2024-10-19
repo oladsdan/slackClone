@@ -4,9 +4,11 @@ import { Input } from "@/components/ui/Input";
 import { Button } from "@/components/ui/button";
 import { useCreateWorkspace } from "../api/use-create-workspaces";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const CreateWorkspaceModal = () => {
     const [open, setOpen] = useCreateWorkspaceModal(); // we call the state from the hook
+    const navigate = useNavigate();
 
     const [name, setName] = useState("");
 
@@ -19,14 +21,15 @@ export const CreateWorkspaceModal = () => {
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         mutate({name}, {
-            onSuccess(data) {
-                console.log(data);
+            onSuccess(Id) {
+                navigate(`/workspace/${Id}`);
             }
         })
     }
 
     const handleClose = () => {
         setOpen(false);
+        setName("");
         
     }
 
