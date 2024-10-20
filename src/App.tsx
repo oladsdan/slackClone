@@ -4,7 +4,8 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import ProtectedRoute from "./features/auth/components/protectedRoute";
 // import HomePage from "./pages/HomePage";
 import { Authenticated, Unauthenticated } from "convex/react";
-import { HomePage, WorkspaceId } from "./pages";
+import { Toaster } from "./components/ui/sonner";
+import { HomePage, WorkspaceIdPage } from "./pages";
 
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
     // </BrowserRouter>
 
     <BrowserRouter>
+      <Toaster />
       <Routes>
         <Route path="/auth" element={
           <>
@@ -49,7 +51,7 @@ function App() {
 
         <Route path="/workspace/:workspaceId" element={
           <ProtectedRoute>
-            <WorkspaceId />
+            <WorkspaceIdPage />
           </ProtectedRoute>
         } />
 

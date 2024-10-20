@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { useCreateWorkspace } from "../api/use-create-workspaces";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 
 export const CreateWorkspaceModal = () => {
     const [open, setOpen] = useCreateWorkspaceModal(); // we call the state from the hook
@@ -22,8 +23,10 @@ export const CreateWorkspaceModal = () => {
         e.preventDefault();
         mutate({name}, {
             onSuccess(Id) {
+                toast.success("Workspace created")
                 navigate(`/workspace/${Id}`);
             }
+
         })
     }
 
