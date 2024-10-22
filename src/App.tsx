@@ -6,6 +6,7 @@ import ProtectedRoute from "./features/auth/components/protectedRoute";
 import { Authenticated, Unauthenticated } from "convex/react";
 import { Toaster } from "./components/ui/sonner";
 import { HomePage, WorkspaceIdPage } from "./pages";
+import { Modal } from "./components/ui/modals";
 
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
     // </BrowserRouter>
 
     <BrowserRouter>
+      <Modal />
       <Toaster />
       <Routes>
         <Route path="/auth" element={

@@ -25,6 +25,7 @@ export const CreateWorkspaceModal = () => {
             onSuccess(Id) {
                 toast.success("Workspace created")
                 navigate(`/workspace/${Id}`);
+                handleClose();
             }
 
         })
