@@ -24,6 +24,12 @@ export const create = mutation({
             joinCode
         })
         // const workspace = await ctx.db.get(workspaceId);
+        // we create members
+        await ctx.db.insert("members", {
+            userId,
+            workspaceId,
+            role: "admin"
+        })
 
         return workspaceId
     }
