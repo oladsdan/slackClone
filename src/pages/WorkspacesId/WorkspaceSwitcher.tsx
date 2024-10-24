@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, DropdownMenuSeparator } from "@/components/ui/dropdown-menu"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, } from "@/components/ui/dropdown-menu"
 import { useGetAWorkspaces } from "@/features/workspaces/api/use-get-Aworkspace";
 import { useGetWorkspaces } from "@/features/workspaces/api/use-get-workspaces";
 import { useCreateWorkspaceModal } from "@/features/workspaces/store/useCreateWorkspaceModal";
@@ -40,9 +40,12 @@ const WorkspaceSwitcher = () => {
             {filteredWorkspaces?.map((workspace) => (
                 <DropdownMenuItem
                     key={workspace?._id}
-                    className="cursor-pointer capitalize"
+                    className="cursor-pointer capitalize overflow-hidden"
                     onClick={() => navigate(`/workspace/${workspace?._id}`) }>
-                    {workspace.name}
+                    <div className="shrink-0 size-9 relative overflow-hidden bg-[#616061] text-white font-semibold text-lg rounded-md flex items-center justify-center mr-2">
+                        {workspace?.name.charAt(0).toUpperCase()}
+                    </div>
+                    <p className="truncate">{workspace?.name}</p>
                 </DropdownMenuItem>
             ))}
             <DropdownMenuItem 
