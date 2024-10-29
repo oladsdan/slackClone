@@ -3,6 +3,13 @@ import { mutation, query } from "./_generated/server";
 import { auth } from "./auth";
 
 
+const generateCode = () => {
+    const code = Array.from({length: 6}, () => "0123456789abcdefghijklmnopqrstuvwxyz" [Math.floor(Math.random() * 36)]).join("");
+
+    return code;
+}
+
+
 
 export const create = mutation({
     args: {
@@ -12,11 +19,11 @@ export const create = mutation({
         const userId = await auth.getUserId(ctx);
 
         if(!userId) {
-            throw new Error("Unauthoriezed")
+            throw new Error("Unauthorized")
         }
 
         //create a proper method later
-        const joinCode = "123456";
+        const joinCode = generateCode();
 
         const workspaceId = await ctx.db.insert("workspace", {
             name: args.name,
@@ -41,6 +48,7 @@ export const get = query({
         //we get the userId
         const userId = await auth.getUserId(ctx);
 
+
         if (!userId) {
             return [];
         }
@@ -63,7 +71,9 @@ export const get = query({
             }
         }
 
-       return await ctx.db.query("workspace").collect();
+    //    return await ctx.db.query("workspace").collect();
+
+        return workspaces;
     },
 });
 
